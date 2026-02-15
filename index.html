@@ -320,14 +320,30 @@
       word-break:break-word;
     }
 
-    /* Gallery */
+    /* Gallery (4 fotos) */
     .gallery{
       margin-top:1rem;
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:.9rem;
     }
-    .gallery .media{min-height:240px}
+    
+    .gallery .media{
+      aspect-ratio: 4 / 3;     /* <- iguala tamaños visuales */
+      min-height: unset;        /* <- quita el “alto variable” */
+    }
+    
+    .gallery .media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition: transform .35s ease;
+    }
+    
+    .gallery figure:hover .media img{
+      transform: scale(1.05);   /* zoom suave */
+    }
+    
     .gallery figcaption{
       margin-top:.5rem;
       font-weight:700;
@@ -341,6 +357,7 @@
     @media (max-width:740px){
       .gallery{grid-template-columns:1fr}
     }
+
 
     /* Reviews slider */
     .reviews-wrap{
