@@ -125,45 +125,75 @@
     }
     .btn-ghost:hover{border-color:var(--cyan)}
 
-    /* HERO (reemplaza TODO tu bloque de Hero por esto) */
+    /* Header (vuelve a como estaba) */
+    .site-header{
+      position:sticky;top:0;z-index:1100;
+      background:color-mix(in srgb, #ffffff 88%, transparent);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid #d9e7f6;
+    }
+    .head{
+      min-height:76px;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    }
+    .brand{
+      display:flex;align-items:center;gap:.75rem;min-height:44px;
+    }
+    .brand-logo{
+      width:44px;height:44px;border-radius:12px;
+      overflow:hidden;
+      border:1px solid #c7e3fa;
+      background:#fff;
+      flex:0 0 auto;
+    }
+    .brand-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+    .brand-name{font-weight:800}
+    .brand-name small{
+      display:block;font-size:.75rem;font-weight:700;color:var(--muted);
+    }
+    .nav{
+      display:flex;align-items:center;gap:.55rem;
+      flex-wrap:wrap;justify-content:flex-end;
+    }
+    .nav a.link{
+      padding:.48rem .72rem;border-radius:999px;
+      font-weight:700;color:#445b73;font-size:.92rem;
+    }
+    .nav a.link:hover{background:#eef7ff;color:#1b3046}
+
+    /* HERO (imagen visible, sin z-index negativo) */
     .hero{
       border-top:none;
       position:relative;
       padding:clamp(3.5rem,8vw,6rem) 0 3.5rem;
       overflow:hidden;
-    
-      /* Fondo del hero directamente (más robusto que ::before con z-index negativo) */
-      background:
-        linear-gradient(98deg,
-          rgba(255,255,255,.92) 0%,
-          rgba(255,255,255,.78) 55%,
-          rgba(255,255,255,.86) 100%
-        ),
-        url("assets/hero/hero-principal.png") center/cover no-repeat;
     }
-    
-    .hero::after{
+    .hero::before{
       content:"";
       position:absolute;
-      inset:auto 0 0 0;
-      height:120px;
+      inset:0;
+      z-index:0;
+      background:
+        linear-gradient(98deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,.78) 55%, rgba(255,255,255,.86) 100%),
+        url("assets/hero/hero-principal.png") center/cover no-repeat;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:auto 0 0 0;height:120px;
       background:linear-gradient(to top, var(--bg), transparent);
       pointer-events:none;
-    }
-    
-    /* Asegura que el contenido va por delante */
-    .hero .container{
-      position:relative;
       z-index:1;
     }
-    
+    .hero .container{
+      position:relative;
+      z-index:2;
+    }
     .hero-grid{
       display:grid;
       grid-template-columns:1.15fr .85fr;
       gap:1rem;
       align-items:end;
     }
-    
     .hero-panel{
       background:rgba(255,255,255,.86);
       border:1px solid #cfe5f8;
@@ -173,29 +203,21 @@
       max-width:430px;
       justify-self:end;
     }
-    
     .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem 0 0}
     .chip{
       font-size:.8rem;font-weight:700;
       color:#19466b;background:#e8f5ff;border:1px solid #c8e7fb;
       padding:.3rem .58rem;border-radius:999px;
     }
-    
     .kpis{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:.65rem;
-      margin-top:.6rem;
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-top:.6rem;
     }
     .kpi{
-      background:#f7fbff;
-      border:1px solid #d7e9fa;
-      border-radius:12px;
+      background:#f7fbff;border:1px solid #d7e9fa;border-radius:12px;
       padding:.7rem .75rem;
     }
     .kpi strong{display:block;font-size:1.08rem}
     .kpi span{font-size:.84rem;color:#5c7188}
-
 
     /* Generic cards */
     .split{
@@ -257,7 +279,7 @@
       margin-bottom:.6rem;
     }
 
-    /* Media boxes (si falta imagen no se rompe) */
+    /* Media boxes */
     .media{
       position:relative;
       overflow:hidden;
@@ -306,37 +328,31 @@
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:.9rem;
     }
-    
     .gallery .media{
-      aspect-ratio: 4 / 3;     /* <- iguala tamaños visuales */
-      min-height: unset;        /* <- quita el “alto variable” */
+      aspect-ratio: 4 / 3;
+      min-height: unset;
     }
-    
     .gallery .media img{
       width:100%;
       height:100%;
       object-fit:cover;
       transition: transform .35s ease;
     }
-    
     .gallery figure:hover .media img{
-      transform: scale(1.05);   /* zoom suave */
+      transform: scale(1.05);
     }
-    
     .gallery figcaption{
       margin-top:.5rem;
       font-weight:700;
       color:#223a52;
       font-size:.93rem;
     }
-    
     @media (max-width:1050px){
       .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
     @media (max-width:740px){
       .gallery{grid-template-columns:1fr}
     }
-
 
     /* Reviews slider */
     .reviews-wrap{
@@ -347,13 +363,12 @@
     .review{
       position:absolute;inset:0;
       opacity:0;transform:translateX(10px);
-      transition:opacity .75s ease, transform .75s ease; /* más lento */
+      transition:opacity .75s ease, transform .75s ease;
       pointer-events:none;
     }
     .review.active{
       opacity:1;transform:translateX(0);pointer-events:auto;
     }
-
     .review-card{
       background:
         linear-gradient(135deg, rgba(225,0,122,.10), rgba(21,174,234,.12)),
@@ -363,15 +378,13 @@
       padding:1.25rem;
       box-shadow:0 18px 38px rgba(17, 54, 95, .16);
     }
-
     .stars{
       font-weight:900;
       color:#ffb100;
       letter-spacing:.08em;
       margin:0 0 .55rem;
-      font-size:1.2rem; /* más grande */
+      font-size:1.2rem;
     }
-
     .dots{
       display:flex;
       justify-content:center;
@@ -386,7 +399,6 @@
       cursor:pointer;
     }
     .dot.active{background:var(--pink);border-color:var(--pink)}
-
 
     /* Schedule + map */
     .schedule-map{
@@ -526,15 +538,14 @@
       *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
       .reveal{opacity:1;transform:none}
     }
+
     /* Más contraste general sin oscurecer */
     .section{
       background: color-mix(in srgb, #ffffff 65%, transparent);
     }
-    
     .section:nth-of-type(even){
       background: color-mix(in srgb, var(--surface-2) 75%, transparent);
     }
-
   </style>
 </head>
 
@@ -721,32 +732,32 @@
           <h2>Cuatro peludos, cuatro estilos.</h2>
           <p class="muted">Fotos reales de la peluquería.</p>
         </div>
-    
+
         <div class="gallery">
           <figure class="reveal">
             <div class="media">
-              <img src="assets/gallery/perro-01.png" alt="Perro 1 recién arreglado" loading="lazy" decoding="async">
+              <img src="assets/gallery/perro-01.png" alt="Perro recién arreglado" loading="lazy" decoding="async">
             </div>
             <figcaption>Olmo</figcaption>
           </figure>
-    
+
           <figure class="reveal">
             <div class="media">
-              <img src="assets/gallery/perro-02.png" alt="Perro 2 recién arreglado" loading="lazy" decoding="async">
+              <img src="assets/gallery/perro-02.png" alt="Perro recién arreglado" loading="lazy" decoding="async">
             </div>
             <figcaption>Luna</figcaption>
           </figure>
-    
+
           <figure class="reveal">
             <div class="media">
-              <img src="assets/gallery/perro-03.png" alt="Perro 3 recién arreglado" loading="lazy" decoding="async">
+              <img src="assets/gallery/perro-03.png" alt="Perro recién arreglado" loading="lazy" decoding="async">
             </div>
             <figcaption>Coco</figcaption>
           </figure>
-    
+
           <figure class="reveal">
             <div class="media">
-              <img src="assets/gallery/perro-04.png" alt="Perro 4 recién arreglado" loading="lazy" decoding="async">
+              <img src="assets/gallery/perro-04.png" alt="Perro recién arreglado" loading="lazy" decoding="async">
             </div>
             <figcaption>Nala</figcaption>
           </figure>
