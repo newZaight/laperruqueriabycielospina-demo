@@ -555,6 +555,15 @@
       *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
       .reveal{opacity:1;transform:none}
     }
+    /* Más contraste general sin oscurecer */
+    .section{
+      background: color-mix(in srgb, #ffffff 65%, transparent);
+    }
+    
+    .section:nth-of-type(even){
+      background: color-mix(in srgb, var(--surface-2) 75%, transparent);
+    }
+
   </style>
 </head>
 
