@@ -640,6 +640,12 @@
     .section:nth-of-type(even){
       background: color-mix(in srgb, var(--surface-2) 75%, transparent);
     }
+    @media (max-width:520px){
+      .container{width:min(100% - 1.25rem, var(--max));} /* más padding lateral */
+      .head{gap:.75rem;}
+      .nav{gap:.4rem;}
+    }
+
   </style>
 </head>
 
