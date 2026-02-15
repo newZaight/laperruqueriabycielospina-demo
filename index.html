@@ -375,13 +375,14 @@
     }
     .review{
       position:absolute;inset:0;
-      opacity:0;transform:translateX(18px);
-      transition:opacity .45s ease, transform .45s ease;
+      opacity:0;transform:translateX(10px);
+      transition:opacity .75s ease, transform .75s ease; /* más lento */
       pointer-events:none;
     }
     .review.active{
       opacity:1;transform:translateX(0);pointer-events:auto;
     }
+
     .review-card{
       background:#fff;
       border:1px solid #d9e8f8;
