@@ -384,25 +384,38 @@
     }
 
     .review-card{
-      background:#fff;
-      border:1px solid #d9e8f8;
-      border-radius:14px;
-      padding:1rem;
-      box-shadow:var(--shadow);
+      background:
+        linear-gradient(135deg, rgba(225,0,122,.10), rgba(21,174,234,.12)),
+        #fff;
+      border:1px solid #cfe5f8;
+      border-radius:16px;
+      padding:1.25rem;
+      box-shadow:0 18px 38px rgba(17, 54, 95, .16);
     }
+
     .stars{
-      font-weight:800;
+      font-weight:900;
       color:#ffb100;
-      letter-spacing:.06em;
-      margin:0 0 .5rem;
+      letter-spacing:.08em;
+      margin:0 0 .55rem;
+      font-size:1.2rem; /* más grande */
     }
-    .dots{display:flex;gap:.45rem;margin-top:.8rem}
+
+    .dots{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:.55rem;
+      margin-top:1rem;
+    }
     .dot{
-      width:10px;height:10px;border-radius:50%;
-      border:1px solid #8fb7d5;background:#d8eafb;
+      width:12px;height:12px;border-radius:999px;
+      border:1px solid #8fb7d5;
+      background:#d8eafb;
       cursor:pointer;
     }
     .dot.active{background:var(--pink);border-color:var(--pink)}
+
 
     /* Schedule + map */
     .schedule-map{
