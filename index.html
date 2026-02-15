@@ -384,28 +384,35 @@
       word-break:break-word;
     }
 
-    /* Gallery (mosaico: todo es foto, tamaños alternos) */
+    /* Gallery (mosaico: todo foto, sin barras) */
     .gallery{
       margin-top:1rem;
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:.9rem;
-      grid-auto-flow:dense;
     }
     
-    .gallery figure{
-      margin:0;
-    }
+    .gallery figure{margin:0}
     
+    /* Base: todas las tarjetas son “foto completa” */
     .gallery .media{
+      position:relative;
       border-radius:16px;
       overflow:hidden;
       border:1px solid #d4e6f8;
       background:#edf7ff;
-      min-height:220px;          /* base */
+      aspect-ratio: 4 / 3;   /* <- define altura */
+    }
+    
+    /* Los “grandes” (2 y 4): un poco más altos */
+    .gallery figure:nth-child(2) .media,
+    .gallery figure:nth-child(4) .media{
+      aspect-ratio: 4 / 5;
     }
     
     .gallery .media img{
+      position:absolute;
+      inset:0;
       width:100%;
       height:100%;
       object-fit:cover;
@@ -416,26 +423,20 @@
       transform: scale(1.06);
     }
     
-    /* Sin texto debajo (si quieres el nombre, lo ponemos en overlay luego) */
     .gallery figcaption{display:none}
-    
-    /* Patrón: pequeño / grande / pequeño / grande */
-    .gallery figure:nth-child(2) .media,
-    .gallery figure:nth-child(4) .media{
-      min-height:340px;          /* “grandes” */
-    }
     
     /* Responsive */
     @media (max-width:1050px){
       .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
       .gallery figure:nth-child(2) .media,
-      .gallery figure:nth-child(4) .media{min-height:320px}
+      .gallery figure:nth-child(4) .media{
+        aspect-ratio: 4 / 4.8;
+      }
     }
     @media (max-width:740px){
       .gallery{grid-template-columns:1fr}
-      .gallery .media{min-height:260px}
+      .gallery .media{aspect-ratio: 4 / 3}
     }
-
 
     /* Reviews slider */
     .reviews-wrap{
