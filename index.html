@@ -125,62 +125,21 @@
     }
     .btn-ghost:hover{border-color:var(--cyan)}
 
-    /* Header */
-    .site-header{
-      position:sticky;top:0;z-index:1100;
-      background:color-mix(in srgb, #ffffff 88%, transparent);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid #d9e7f6;
-    }
-    .head{
-      min-height:76px;
-      display:flex;align-items:center;justify-content:space-between;gap:1rem;
-    }
-    .brand{
-      display:flex;align-items:center;gap:.75rem;min-height:44px;
-    }
-    .brand-logo{
-      width:54px;height:54px;border-radius:14px;
-      overflow:hidden;
-      border:1px solid #c7e3fa;
-      background:#fff;
-      flex:0 0 auto;
-    }
-    .brand-logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;     /* rellena mejor */
-      padding:0;
-      transform: scale(1.12); /* zoom suave para leerlo */
-      transform-origin:center;
-    }
-
-    .brand-name{font-weight:800}
-    .brand-name small{
-      display:block;font-size:.75rem;font-weight:700;color:var(--muted);
-    }
-
-    .nav{
-      display:flex;align-items:center;gap:.55rem;
-      flex-wrap:wrap;justify-content:flex-end;
-    }
-    .nav a.link{
-      padding:.48rem .72rem;border-radius:999px;
-      font-weight:700;color:#445b73;font-size:.92rem;
-    }
-    .nav a.link:hover{background:#eef7ff;color:#1b3046}
-
-    /* Hero */
+    /* HERO (reemplaza TODO tu bloque de Hero por esto) */
     .hero{
       border-top:none;
       position:relative;
       padding:clamp(3.5rem,8vw,6rem) 0 3.5rem;
       overflow:hidden;
     
-      /* fondo + foto aquí (sin ::before) */
+      /* Fondo del hero directamente (más robusto que ::before con z-index negativo) */
       background:
-        linear-gradient(98deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,.78) 55%, rgba(255,255,255,.86) 100%),
-        url("./assets/hero/hero-principal.png") center/cover no-repeat;
+        linear-gradient(98deg,
+          rgba(255,255,255,.92) 0%,
+          rgba(255,255,255,.78) 55%,
+          rgba(255,255,255,.86) 100%
+        ),
+        url("assets/hero/hero-principal.png") center/cover no-repeat;
     }
     
     .hero::after{
@@ -192,8 +151,11 @@
       pointer-events:none;
     }
     
-    /* asegura que el contenido se vea encima del fondo */
-    .hero .container{ position:relative; z-index:1; }
+    /* Asegura que el contenido va por delante */
+    .hero .container{
+      position:relative;
+      z-index:1;
+    }
     
     .hero-grid{
       display:grid;
@@ -220,14 +182,20 @@
     }
     
     .kpis{
-      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-top:.6rem;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:.65rem;
+      margin-top:.6rem;
     }
     .kpi{
-      background:#f7fbff;border:1px solid #d7e9fa;border-radius:12px;
+      background:#f7fbff;
+      border:1px solid #d7e9fa;
+      border-radius:12px;
       padding:.7rem .75rem;
     }
     .kpi strong{display:block;font-size:1.08rem}
     .kpi span{font-size:.84rem;color:#5c7188}
+
 
     /* Generic cards */
     .split{
